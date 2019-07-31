@@ -27,16 +27,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         String server = serverName.getText().toString();
 
-        switch (v.getId()) {
-            case R.id.main_activity_submit:
-                if (server.equals(""))
-                    Toast.makeText(this, "Server Name can't be empty", Toast.LENGTH_LONG).show();
-                else {
-                    Config.SERVER_NAME = server;
-                    startActivity(new Intent(this, TopMovies.class));
-                    finish();
-                }
-                break;
+        if (v.getId() == R.id.main_activity_submit) {
+            if (server.equals(""))
+                Toast.makeText(this, "Server Name can't be empty", Toast.LENGTH_LONG).show();
+            else {
+                Config.SERVER_NAME = "http://" + server + ":8000/";
+                startActivity(new Intent(this, TopMovies.class));
+                finish();
+            }
         }
     }
 }
